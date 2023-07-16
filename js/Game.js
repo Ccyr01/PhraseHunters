@@ -7,10 +7,10 @@ class Game{
         this.missed = 0;
         this.phrases = [
             new Phrase("Hello World"),
-            new Phrase("OpenAI is awesome"),
-            new Phrase("JavaScript is fun"),
-            new Phrase("Coding is cool"),
-            new Phrase("Phrase object example")];
+            new Phrase("Life is like a box of chocolates"),
+            new Phrase("Are we there yet"),
+            new Phrase("Once upon a time"),
+            new Phrase("Happily ever after")];
         this.activePhrase = null;
     }
     startGame(){
