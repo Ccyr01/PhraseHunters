@@ -5,7 +5,7 @@ class Phrase{
     
     constructor(phrase){
         this.phrase = phrase.toLowerCase();
-        const phraseArr = this.phrase.split('');
+        this.phraseArr = this.phrase.split('');
     }
 
     addPhraseToDisplay(){
@@ -18,29 +18,58 @@ class Phrase{
         const ulElement = document.querySelector('ul');
         const myPhrase = this.phrase;
 
-        phraseArr.forEach(letter =>{
+        this.phraseArr.forEach(letter =>{
             const liElement = document.createElement('li');
             liElement.textContent = letter;
             if(letter === ' '){
                 liElement.setAttribute('class', 'space');
 
             }
-            liElement.setAttribute('class',`hide letter ${letter}`);
-            console.log(liElement.textContent);
+            else{
+                liElement.setAttribute('class',`hide letter ${letter}`);
+                // console.log(liElement.textContent);
 
+            }
             ulElement.appendChild(liElement);
 
+
         })
-        // getRandomPhrase(){
-        //     const phrase = t
-        // }
-        // showMatchedLetter(){
-
-
-        // }
-        // checkLetter(){
-
-        // }
+        ///TODO need to figure out where to put
+        //add event listeners on each key on keyboard user could pick from
+        const keys = document.querySelectorAll('.key');
+        keys.forEach(key => {
+            key.addEventListener('click', () => {
+            // Handle key click event here
+            console.log(`Key "${key.textContent}" clicked!`);
+            console.log(this.checkLetter(key.textContent));
+            if(this.checkLetter(key.textContent)){
+                this.showMatchedLetter(key.textContent);
+            }
+            });
+        });
     }
+
+    //checks for letter then prints to console
+    checkLetter(letter){
+        if(this.phraseArr.includes(letter)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    showMatchedLetter(letter){
+        const letters = document.querySelectorAll(`.hide.letter.${letter}`);
+        console.log(letters);
+        letters.forEach(letter => {
+            letter.classList.remove('hide');
+            letter.classList.add('show');
+            
+            
+        })
+
+    }
+    
 
 }
