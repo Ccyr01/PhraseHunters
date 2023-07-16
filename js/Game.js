@@ -36,6 +36,7 @@ class Game{
             console.log(key);
             key.disabled = true;
             //if letter selected is (NOT) in phrase style it orange
+            
             if(!phraseArr.includes(key.textContent)){
                 console.log('key not in there');
                 key.classList.add('wrong');
@@ -43,8 +44,8 @@ class Game{
             }
             else{
                 console.log(typeof this.activePhrase.phrase); // Output: string
-
-                this.activePhrase.phrase.showMatchedLetter(key.textContent);
+                console.log(key.textContent);
+                this.activePhrase.showMatchedLetter(key.textContent);
 
             }
             
