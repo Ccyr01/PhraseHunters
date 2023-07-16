@@ -41,9 +41,10 @@ class Game{
                 key.classList.add('wrong');
                 removeLife();
             }
-            else{
-                
-            }
+            // else{
+            //     this.activePhrase.phrase.showMatchedLetter(key.textContent);
+
+            // }
             
             });
             
