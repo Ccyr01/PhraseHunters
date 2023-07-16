@@ -35,13 +35,24 @@ class Game{
             console.log(`Key "${key.textContent}" clicked!`);
             console.log(key);
             key.disabled = true;
-            });
+            //if letter selected is (NOT) in phrase style it orange
             if(!phraseArr.includes(key.textContent)){
                 console.log('key not in there');
                 key.classList.add('wrong');
+                removeLife();
             }
+            else{
+                
+            }
+            
+            });
+            
+            
         });
          
+    }
+    removeLife(){
+
     }
 
     
