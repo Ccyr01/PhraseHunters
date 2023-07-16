@@ -13,8 +13,8 @@ class Phrase{
         // console.log(this.phrase.length);
         const phraseElement = document.getElementById('phrase');
         
-        console.log(this.phraseArr);
-        console.log(phraseElement);
+        // console.log(this.phraseArr);
+        // console.log(phraseElement);
         const ulElement = document.querySelector('ul');
         const myPhrase = this.phrase;
 
@@ -40,8 +40,6 @@ class Phrase{
         keys.forEach(key => {
             key.addEventListener('click', () => {
             // Handle key click event here
-            console.log(`Key "${key.textContent}" clicked!`);
-            console.log(this.checkLetter(key.textContent));
             if(this.checkLetter(key.textContent)){
                 this.showMatchedLetter(key.textContent);
             }
@@ -61,7 +59,6 @@ class Phrase{
     
     showMatchedLetter(letter){
         const letters = document.querySelectorAll(`.hide.letter.${letter}`);
-        console.log(letters);
         letters.forEach(letter => {
             letter.classList.remove('hide');
             letter.classList.add('show');

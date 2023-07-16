@@ -17,9 +17,7 @@ class Game{
         const overlayElement = document.getElementById('overlay');
         overlayElement.style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
-        console.log("active phrase game: " +this.activePhrase);
         this.activePhrase.addPhraseToDisplay(this.activePhrase);
-        console.log(`start game: avtive phrase from Game class random method${this.activePhrase}` )
         this.handleInteraction();
     }
     getRandomPhrase(){
@@ -29,7 +27,8 @@ class Game{
     }
     handleInteraction(){
         
-
+        const phraseArr = this.activePhrase.phrase.split('');
+        console.log(phraseArr);
         const keys = document.querySelectorAll('.key');
         keys.forEach(key => {
             key.addEventListener('click', () => {
@@ -37,8 +36,12 @@ class Game{
             console.log(key);
             key.disabled = true;
             });
+            if(!phraseArr.includes(key.textContent)){
+                console.log('key not in there');
+                key.classList.add('wrong');
+            }
         });
-        // if(this.phrase.)
+         
     }
 
     
