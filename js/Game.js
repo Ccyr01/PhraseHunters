@@ -39,12 +39,14 @@ class Game{
             if(!phraseArr.includes(key.textContent)){
                 console.log('key not in there');
                 key.classList.add('wrong');
-                removeLife();
+                // removeLife();
             }
-            // else{
-            //     this.activePhrase.phrase.showMatchedLetter(key.textContent);
+            else{
+                console.log(typeof this.activePhrase.phrase); // Output: string
 
-            // }
+                this.activePhrase.phrase.showMatchedLetter(key.textContent);
+
+            }
             
             });
             
@@ -52,9 +54,9 @@ class Game{
         });
          
     }
-    removeLife(){
+    // removeLife(){
 
-    }
+    // }
 
     
 }
