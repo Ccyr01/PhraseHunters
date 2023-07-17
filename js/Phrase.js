@@ -22,11 +22,11 @@ class Phrase{
             const liElement = document.createElement('li');
             liElement.textContent = letter;
             if(letter === ' '){
-                liElement.setAttribute('class', 'space');
+                liElement.classList.add('space');
 
             }
             else{
-                liElement.setAttribute('class',`hide letter ${letter}`);
+                liElement.classList.add('hide', 'letter', letter);
                 // console.log(liElement.textContent);
 
             }
@@ -59,9 +59,10 @@ class Phrase{
     
     showMatchedLetter(letter){
         const letters = document.querySelectorAll(`.hide.letter.${letter}`);
-        letters.forEach(letter => {
-            letter.classList.remove('hide');
-            letter.classList.add('show');
+        console.log(letters);
+        letters.forEach(hiddenLetter => {
+            hiddenLetter.classList.remove('hide');
+            hiddenLetter.classList.add('show');
             
             
         })

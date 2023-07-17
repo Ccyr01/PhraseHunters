@@ -34,7 +34,6 @@ class Game{
             key.addEventListener('click', () => {
             console.log(`Key "${key.textContent}" clicked!`);
             console.log(key);
-            key.disabled = true;
             //if letter selected is (NOT) in phrase style it orange
             
             if(!phraseArr.includes(key.textContent)){
@@ -44,10 +43,16 @@ class Game{
             }
             else{
                 console.log(typeof this.activePhrase.phrase); // Output: string
+                console.log("here key. text content ");
+
                 console.log(key.textContent);
+                key.classList.add('show');
                 this.activePhrase.showMatchedLetter(key.textContent);
 
+
             }
+            key.disabled = true;
+
             
             });
             
