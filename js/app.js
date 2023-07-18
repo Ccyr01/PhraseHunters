@@ -13,7 +13,9 @@ const targetSrc = 'images/lostHeart.png';
 const liveHeart = 'images/liveHeart.png';
 
 
-
+//Start the game
+//We need to clear old styling from previous game
+// just in case it's not the user's first attempt
 btn_reset.addEventListener("click", () => {
     ul.innerHTML = '';
     keys.forEach(key => {                

@@ -2,7 +2,10 @@
  * Project 4 - OOP Game App
  * Game.js */
 class Game{
-    
+    //Game constructor consists of 
+    //the numer of misses which will be incremented with wrong guesses
+    //an array of phrases
+    //and an active phrase which will be selected from the array randomly
     constructor(){
         this.missed = 0;
         this.phrases = [
@@ -13,6 +16,9 @@ class Game{
             new Phrase("Happily ever after")];
         this.activePhrase = null;
     }
+    //start game method calls the other method:
+    // gets random phrase, displays it,
+    // handles user interactions, and checks for a winner
     startGame(){
         const overlayElement = document.getElementById('overlay');
         overlayElement.style.display = 'none';
@@ -21,11 +27,14 @@ class Game{
         this.handleInteraction();
         this.checkForWin();
     }
+    //returns random phrase from our array of phrase objects
     getRandomPhrase(){
 
         const phrase =  this.phrases[Math.floor(Math.random() * this.phrases.length)];
         return phrase;
     }
+    //method is called after wrong guess
+    //takes away one of the users hearts
     removeLife(){
         let index = 0;
         const tries = document.querySelectorAll('.tries');
@@ -44,7 +53,7 @@ class Game{
         this.missed++;
         //check if last life is taken
         if(this.missed === 5){
-            this.gameOver();
+            this.gameOver('lose');
         }
         
         //checks if there is an image to change based on lastIndex
@@ -55,6 +64,7 @@ class Game{
             lastImage.setAttribute('src', 'images/lostHeart.png');
         }
     }
+    //check for winner then add correct styling
     checkForWin(){
         const li = document.querySelectorAll('.hide.letter');
         let count =0;
@@ -64,23 +74,36 @@ class Game{
 
         })
         if(count === 0){
+            this.gameOver('win');
+        }
+    }
+    //ends game & takes you back to start menu with appropriate styling
+    // depending on if you won or lost
+    gameOver(outcome){
+        
+        if(outcome === 'lose'){
+            const gameOverH1 = document.getElementById("game-over-message");
+        
+
+            overlayElement.style.display = 'block';
+            overlayElement.classList.add('lose');
+            gameOverH1.innerText = "Sorry you lost. Try again.";
+            alert("game over");
+        }
+        else{
             alert("winner");
             const gameOverH1 = document.getElementById("game-over-message");
             gameOverH1.innerText = "We have a winner!";
 
             overlayElement.style.display = 'block';
             overlayElement.classList.add('win');
+
         }
     }
-    gameOver(){
-        const gameOverH1 = document.getElementById("game-over-message");
-        
-
-        overlayElement.style.display = 'block';
-        overlayElement.classList.add('lose');
-        gameOverH1.innerText = "Sorry you lost. Try again.";
-        alert("game over");
-    }
+    //handle the interactions from the user
+    //styles the letters according to if it was correct or not
+    //calls the other methods if it's wrong guess removeLife
+    //if right showMatchedLetter and checkForWin is called
     handleInteraction(){
         
         const phraseArr = this.activePhrase.phrase.split('');
