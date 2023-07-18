@@ -60,7 +60,7 @@ class Game{
         let count =0;
         li.forEach(listItem => {
             count++;
-            console.log("item " +listItem.textContent+" count "+count);
+            // console.log("item " +listItem.textContent+" count "+count);
 
         })
         if(count === 0){
