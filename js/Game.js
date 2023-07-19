@@ -20,12 +20,13 @@ class Game{
     // gets random phrase, displays it,
     // handles user interactions, and checks for a winner
     startGame(){
+        this.missed = 0;
         const overlayElement = document.getElementById('overlay');
         overlayElement.style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay(this.activePhrase);
-        this.handleInteraction();
-        this.checkForWin();
+        // this.handleInteraction();
+        // this.checkForWin();
     }
     //returns random phrase from our array of phrase objects
     getRandomPhrase(){
@@ -47,10 +48,11 @@ class Game{
             if (image.getAttribute('src') === targetSrc) {
                 lastIndex = index;
                 count++;
-                
+                // console.log("count: "+count);
             }
         });
         this.missed++;
+        console.log(this.missed);
         //check if last life is taken
         if(this.missed === 5){
             this.gameOver('lose');
@@ -87,6 +89,7 @@ class Game{
 
             overlayElement.style.display = 'block';
             overlayElement.classList.add('lose');
+            overlayElement.classList.remove('win');
             gameOverH1.innerText = "Sorry you lost. Try again.";
             alert("game over");
         }
@@ -94,8 +97,8 @@ class Game{
             alert("winner");
             const gameOverH1 = document.getElementById("game-over-message");
             gameOverH1.innerText = "We have a winner!";
-
             overlayElement.style.display = 'block';
+            overlayElement.classList.remove('lose');
             overlayElement.classList.add('win');
 
         }
@@ -104,38 +107,22 @@ class Game{
     //styles the letters according to if it was correct or not
     //calls the other methods if it's wrong guess removeLife
     //if right showMatchedLetter and checkForWin is called
-    handleInteraction(){
+    handleInteraction(letterPicked){
         
         const phraseArr = this.activePhrase.phrase.split('');
-        console.log(phraseArr);
-        const keys = document.querySelectorAll('.key');
-        keys.forEach(key => {
-            key.addEventListener('click', () => {
-            
-            //if letter selected is (NOT) in phrase style it orange
-            
-            if(!phraseArr.includes(key.textContent)){
-                key.classList.add('wrong');
+        //if letter selected is (NOT) in phrase style it orange
+        if(!phraseArr.includes(letterPicked.textContent)){
+            letterPicked.classList.add('wrong');
 
-                this.removeLife();
-            }
-            else{
-                key.classList.add('chosen');
-                this.activePhrase.showMatchedLetter(key.textContent);
-                this.checkForWin();
-
-
-            }
-            key.disabled = true;
-
-            
-            });
-            
-            
-        });
-         
+            this.removeLife();
+        }
+        else{
+            letterPicked.classList.add('chosen');
+            this.activePhrase.showMatchedLetter(letterPicked.textContent);
+            this.checkForWin();
+        }
+            letterPicked.disabled = true;
+        
     }
-   
 
-    
 }

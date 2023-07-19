@@ -12,12 +12,13 @@ const images = document.querySelectorAll('img');
 const targetSrc = 'images/lostHeart.png';
 const liveHeart = 'images/liveHeart.png';
 
-
+const game = new Game();
 //Start the game
 //We need to clear old styling from previous game
 // just in case it's not the user's first attempt
 btn_reset.addEventListener("click", () => {
     ul.innerHTML = '';
+    game.missed = 0;
     keys.forEach(key => {                
             key.classList.remove('wrong');
             key.classList.remove('chosen');
@@ -30,10 +31,21 @@ btn_reset.addEventListener("click", () => {
             
         }
     });
-    const game = new Game();
+    
+    console.log(game.missed);
     game.startGame();
+    //event handler on each key
+    keys.forEach(key => {
+        key.addEventListener('click', (e) => {
+        game.handleInteraction(key);
+        e.target.disabled = true;
+        });
+    });
+
 
 });
+
+
 
 
 
