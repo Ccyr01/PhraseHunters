@@ -52,7 +52,6 @@ class Game{
             }
         });
         this.missed++;
-        console.log(this.missed);
         //check if last life is taken
         if(this.missed === 5){
             this.gameOver('lose');
