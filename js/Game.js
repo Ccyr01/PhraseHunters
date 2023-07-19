@@ -110,8 +110,10 @@ class Game{
     handleInteraction(letterPicked,key){
         
         const phraseArr = this.activePhrase.phrase.split('');
+        
         //if letter selected is (NOT) in phrase style it orange
-        if(!phraseArr.includes(letterPicked)){
+        //use checkLetter to check if letter is in phrase
+        if(!this.activePhrase.checkLetter(letterPicked)){
             key.classList.add('wrong');
 
             this.removeLife();
