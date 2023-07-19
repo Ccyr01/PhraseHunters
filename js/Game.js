@@ -90,10 +90,8 @@ class Game{
             overlayElement.classList.add('lose');
             overlayElement.classList.remove('win');
             gameOverH1.innerText = "Sorry you lost. Try again.";
-            alert("game over");
         }
         else{
-            alert("winner");
             const gameOverH1 = document.getElementById("game-over-message");
             gameOverH1.innerText = "We have a winner!";
             overlayElement.style.display = 'block';
