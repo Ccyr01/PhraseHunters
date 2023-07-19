@@ -107,21 +107,21 @@ class Game{
     //styles the letters according to if it was correct or not
     //calls the other methods if it's wrong guess removeLife
     //if right showMatchedLetter and checkForWin is called
-    handleInteraction(letterPicked){
+    handleInteraction(letterPicked,key){
         
         const phraseArr = this.activePhrase.phrase.split('');
         //if letter selected is (NOT) in phrase style it orange
-        if(!phraseArr.includes(letterPicked.textContent)){
-            letterPicked.classList.add('wrong');
+        if(!phraseArr.includes(letterPicked)){
+            key.classList.add('wrong');
 
             this.removeLife();
         }
         else{
-            letterPicked.classList.add('chosen');
-            this.activePhrase.showMatchedLetter(letterPicked.textContent);
+            key.classList.add('chosen');
+            this.activePhrase.showMatchedLetter(letterPicked);
             this.checkForWin();
         }
-            letterPicked.disabled = true;
+            key.disabled = true;
         
     }
 

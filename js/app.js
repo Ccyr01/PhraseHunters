@@ -31,20 +31,24 @@ btn_reset.addEventListener("click", () => {
             
         }
     });
-    
-    console.log(game.missed);
-    game.startGame();
-    //event handler on each key
+    //Got to remove the previous eventListener for restarted games
     keys.forEach(key => {
-        key.addEventListener('click', (e) => {
-        game.handleInteraction(key);
-        e.target.disabled = true;
+        key.removeEventListener('click', (e) => {
         });
     });
+    console.log(game.missed);
+    game.startGame();
 
 
 });
-
+keys.forEach(key => {
+    key.addEventListener('click', handleClicks); // Use the function reference
+});
+function handleClicks(e){
+    const letterKey = e.target.textContent;
+    game.handleInteraction(letterKey,e.target);
+    e.target.disabled = true;
+}
 
 
 
